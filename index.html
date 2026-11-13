@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>日文文法筆記 | Nihongo Notes</title>
+  <meta name="description" content="一個文法一頁的 JLPT 日文文法筆記，依等級、分類、關鍵字快速查找。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+JP:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html"><span class="stamp">文</span>日文文法筆記</a>
+      <span class="muted">Nihongo Notes</span>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <section class="hero">
+      <h1>一個文法，一頁筆記。</h1>
+      <p>依 JLPT 等級整理的日文文法：意思、接續、例句、易混淆比較與小測驗，一頁看完。</p>
+    </section>
+
+    <div class="toolbar">
+      <div class="chips" id="levels" role="group" aria-label="JLPT 等級"></div>
+      <select id="category" aria-label="分類">
+        <option value="ALL">所有分類</option>
+      </select>
+      <input id="q" type="search" placeholder="搜尋文法、讀音或中文意思…" aria-label="搜尋">
+    </div>
+    <p class="result-count" id="count"></p>
+
+    <div class="grid" id="grid"></div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      由 AI 依 <code>AGENTS.md</code> 規則協作產生 · 例句皆為自行造句 · 僅供學習使用
+    </div>
+  </footer>
+
+  <script src="assets/js/catalog.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

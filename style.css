@@ -1,0 +1,210 @@
+/* =========================================================
+   日文文法筆記站 — 全站唯一樣式檔
+   規則：只使用下方 :root 變數，禁止寫死色碼（見 AGENTS.md §8）
+   ========================================================= */
+
+/* ---------- 1. 設計變數 ---------- */
+:root {
+  --paper: #f6f1e7;
+  --card: #fffdf8;
+  --ink: #23201c;
+  --muted: #776f62;
+  --line: #e3dac8;
+  --shu: #c0432d;
+  --shu-soft: #f6dcd4;
+
+  --n5: #4e8a5c;
+  --n4: #3a76a3;
+  --n3: #b07f2c;
+  --n2: #85509a;
+  --n1: #c0432d;
+
+  --font-jp: "Noto Serif JP", "Hiragino Mincho ProN", serif;
+  --font-zh: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+
+  --radius: 10px;
+  --shadow: 0 1px 0 var(--line), 0 6px 18px -12px rgba(35, 32, 28, .35);
+  --max: 860px;
+}
+
+/* ---------- 2. 基礎 ---------- */
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-zh);
+  font-size: 16px;
+  line-height: 1.8;
+}
+a { color: var(--ink); text-decoration-color: var(--line); text-underline-offset: 3px; }
+a:hover { color: var(--shu); text-decoration-color: var(--shu); }
+h1, h2, h3 { font-family: var(--font-jp); font-weight: 700; line-height: 1.35; }
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 20px; }
+.muted { color: var(--muted); }
+
+/* ---------- 3. 頁首 / 頁尾 ---------- */
+.site-header {
+  border-bottom: 1px solid var(--line);
+  background: var(--card);
+}
+.site-header .wrap {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 60px;
+}
+.brand {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-jp); font-weight: 700; font-size: 18px;
+  text-decoration: none;
+}
+.stamp {
+  display: inline-grid; place-items: center;
+  width: 30px; height: 30px; border-radius: 6px;
+  background: var(--shu); color: var(--card);
+  font-family: var(--font-jp); font-size: 16px; font-weight: 700;
+  transform: rotate(-4deg);
+}
+.site-footer {
+  margin-top: 64px; padding: 28px 0 40px;
+  border-top: 1px solid var(--line);
+  color: var(--muted); font-size: 14px;
+}
+
+/* ---------- 4. 首頁 Hero ---------- */
+.hero { padding: 48px 0 24px; }
+.hero h1 { font-size: clamp(28px, 5vw, 40px); margin: 0 0 8px; }
+.hero p { margin: 0; color: var(--muted); }
+
+/* ---------- 5. 篩選列 ---------- */
+.toolbar {
+  display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+  padding: 16px 0 8px;
+}
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  border: 1px solid var(--line); background: var(--card); color: var(--ink);
+  padding: 4px 14px; border-radius: 999px; font: inherit; font-size: 14px; cursor: pointer;
+}
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--card); border-color: var(--ink); }
+.toolbar select, .toolbar input {
+  font: inherit; font-size: 14px; color: var(--ink);
+  border: 1px solid var(--line); background: var(--card);
+  border-radius: 8px; padding: 6px 10px;
+}
+.toolbar input { flex: 1 1 200px; min-width: 0; }
+.result-count { font-size: 14px; color: var(--muted); margin: 4px 0 16px; }
+
+/* ---------- 6. 卡片列表 ---------- */
+.grid {
+  display: grid; gap: 14px;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+.card {
+  display: block; position: relative;
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 18px 18px 16px; text-decoration: none; box-shadow: var(--shadow);
+  transition: transform .15s ease, border-color .15s ease;
+}
+.card:hover { transform: translateY(-2px); border-color: var(--shu); color: var(--ink); }
+.card .pattern-sm { font-family: var(--font-jp); font-size: 22px; font-weight: 700; margin: 8px 0 2px; }
+.card .meaning-sm { margin: 0; font-size: 14px; color: var(--muted); }
+.card .meta { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.empty { padding: 40px; text-align: center; color: var(--muted); border: 1px dashed var(--line); border-radius: var(--radius); }
+
+/* ---------- 7. 徽章 / 標籤 ---------- */
+.badge {
+  display: inline-block; padding: 0 9px; border-radius: 5px;
+  color: var(--card); font-size: 12px; font-weight: 700; letter-spacing: .04em; line-height: 22px;
+}
+.badge-n5 { background: var(--n5); }
+.badge-n4 { background: var(--n4); }
+.badge-n3 { background: var(--n3); }
+.badge-n2 { background: var(--n2); }
+.badge-n1 { background: var(--n1); }
+.tag {
+  display: inline-block; padding: 0 8px; border-radius: 5px;
+  border: 1px solid var(--line); color: var(--muted); font-size: 12px; line-height: 20px;
+}
+
+/* ---------- 8. 文法頁 ---------- */
+.crumb { padding: 20px 0 0; font-size: 14px; }
+.grammar-head { padding: 20px 0 8px; border-bottom: 2px solid var(--ink); margin-bottom: 8px; }
+.grammar-head .meta { display: flex; gap: 6px; flex-wrap: wrap; }
+.pattern { font-size: clamp(36px, 7vw, 54px); margin: 10px 0 0; letter-spacing: .02em; }
+.reading { font-family: var(--font-jp); color: var(--muted); margin: 0 0 6px; }
+.tools { display: flex; justify-content: flex-end; padding: 8px 0; }
+.btn {
+  font: inherit; font-size: 13px; cursor: pointer;
+  border: 1px solid var(--line); background: var(--card); color: var(--ink);
+  padding: 4px 12px; border-radius: 8px;
+}
+.btn:hover { border-color: var(--shu); color: var(--shu); }
+
+main section { padding: 22px 0 6px; }
+main section > h2 {
+  font-size: 20px; margin: 0 0 12px;
+  display: flex; align-items: center; gap: 10px;
+}
+main section > h2::before {
+  content: ""; width: 6px; height: 20px; border-radius: 2px; background: var(--shu);
+}
+
+/* 接續公式 */
+.formula { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.formula th, .formula td { padding: 10px 14px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+.formula th { width: 7em; font-weight: 500; color: var(--muted); font-size: 14px; white-space: nowrap; }
+.formula td { font-family: var(--font-jp); }
+.formula tr:last-child th, .formula tr:last-child td { border-bottom: 0; }
+
+/* 例句 */
+.example {
+  background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--ink);
+  border-radius: 6px; padding: 12px 16px; margin: 0 0 10px;
+}
+.example .jp { font-family: var(--font-jp); font-size: 19px; margin: 0; line-height: 2.1; }
+.example .zh { margin: 2px 0 0; color: var(--muted); font-size: 15px; }
+mark { background: linear-gradient(transparent 62%, var(--shu-soft) 62%); color: inherit; font-weight: 700; }
+rt { font-size: .5em; color: var(--muted); font-family: var(--font-jp); }
+body.hide-furigana rt { visibility: hidden; }
+
+/* 易混淆比較 */
+.compare { width: 100%; border-collapse: collapse; font-size: 15px; background: var(--card); }
+.compare th, .compare td { border: 1px solid var(--line); padding: 10px 12px; text-align: left; vertical-align: top; }
+.compare thead th { background: var(--paper); font-weight: 700; }
+.compare td:first-child { font-family: var(--font-jp); font-weight: 700; white-space: nowrap; }
+.compare td:last-child { font-family: var(--font-jp); }
+
+/* 小測驗 */
+.quiz-q { font-family: var(--font-jp); font-size: 18px; margin: 0 0 6px; }
+.quiz-options { margin: 0 0 10px; padding-left: 1.4em; font-family: var(--font-jp); }
+.quiz {
+  background: var(--card); border: 1px dashed var(--shu); border-radius: var(--radius); padding: 10px 16px;
+}
+.quiz summary { cursor: pointer; color: var(--shu); font-weight: 700; }
+.quiz p { margin: 8px 0 2px; }
+
+/* 相關文法 */
+.related-list { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 0; list-style: none; }
+.related-list a {
+  display: inline-block; padding: 4px 14px; border: 1px solid var(--line); border-radius: 999px;
+  background: var(--card); text-decoration: none; font-family: var(--font-jp);
+}
+
+/* 上一篇 / 下一篇 */
+.pager { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 40px; }
+.pager a {
+  display: block; padding: 12px 16px; border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--card); text-decoration: none;
+}
+.pager a small { display: block; color: var(--muted); font-size: 12px; }
+.pager a span { font-family: var(--font-jp); font-weight: 700; }
+.pager .next { text-align: right; grid-column: 2; }
+
+/* ---------- 9. 手機版 ---------- */
+@media (max-width: 640px) {
+  .formula th { width: 5.5em; }
+  .compare { font-size: 14px; }
+  .compare td:first-child { white-space: normal; }
+  .example .jp { font-size: 17px; }
+}
